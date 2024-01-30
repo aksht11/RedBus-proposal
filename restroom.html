@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Booking Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url('bg2.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7); 
+        }
+  
+        header   {
+            background-color: #D13140;
+            text-align: center;
+            padding: 20px;
+            flex-shrink: 0;
+        }
+
+
+        header img {
+            height: 60px; 
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        header a {
+    color: black;
+    margin: 0 15px;
+    font-weight: 1000; /* Set font weight to bold */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for 3D effect */
+   /* Add outline with grey color */
+}
+        main {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .app-title {
+            font-size: 24px;
+            font-weight: 1000;
+            margin-bottom: 20px;
+            color: black; /* White */
+        }
+
+        .bus-info {
+            margin-bottom: 20px;
+        }
+
+        .restaurant-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .menu-category {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+
+        .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #3498db; /* Button background color */
+    color: #fff; /* Button text color */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #2980b9; /* Change background color on hover */
+}
+
+        .dish-container {
+            width: 45%;
+            padding: 10px;
+            border: 2px solid #000;
+            border-radius: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            background-color: #FFF; /* White */
+        }
+
+       .dish-image {
+    max-width: 500px;
+    height: 200px; 
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+        .dish-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .dish-info {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .order-checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order-checkbox input {
+            margin-right: 5px;
+        }
+
+        .confirm-button {
+            padding: 10px;
+            background-color: #D13140; 
+            color: #FFF; /* White */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .total-sum {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #FFF; /* White */
+            background-color: #D13140; 
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .restroom-header {
+            background-color: #D13140;
+            color: #FFF; /* White */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .restroom-info {
+            padding: 20px;
+            border: 2px solid #000;
+            border-radius: 10px;
+            margin-top: 10px;
+            background-color: #FFF; /* White */
+            color: #000; /* Black */
+        }
+
+        footer {
+            background-color: #D13140; 
+            padding: 10px;
+            text-align: center;
+            flex-shrink: 0;
+            color: #FFF; /* White */
+        }
+
+        footer img {
+            height: 30px;
+            width: auto;
+            margin-top: 5px;
+        }
+
+    </style>
+    <script>
+        function calculateTotalSum() {
+            var totalSum = 0;
+
+            
+            var checkboxes = document.querySelectorAll('input[name="dish"]:checked');
+
+            
+            checkboxes.forEach(function (checkbox) {
+                var dishRate = parseFloat(checkbox.getAttribute('data-rate'));
+                totalSum += dishRate;
+            });
+
+            
+            document.getElementById('totalSumDisplay').innerText = '₹' + totalSum.toFixed(2);
+        }
+
+        function confirmOrder() {
+            
+            var checkboxes = document.querySelectorAll('input[name="dish"]:checked');
+            if (checkboxes.length === 0) {
+                alert('SELECT SOMETHING TO PROCEED');
+                return;
+            }
+
+            // Logic to confirm the order
+            alert('Order confirmed! Enjoy your meal.');
+        }
+
+        function showRestroomInfo() {
+            // Logic to display restroom information
+            var cleanlinessRating = 3.5; 
+
+            // Calculate the star rating for cleanliness
+            var starRating = '⭐️'.repeat(Math.floor(cleanlinessRating)) + '☆'.repeat(5 - Math.floor(cleanlinessRating));
+
+            // Display the restroom information with star rating
+            var message = `Restroom information:\n- Location: Near the entrance\n- Cleanliness: ${starRating} (${cleanlinessRating}/5)`;
+            alert(message);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="RedBus">
+    </header>
+
+    <main>
+        <div class="app-title">Now book your meals beforehand you travel with the all new RedBus app!</div>
+        
+        <div class="bus-box">
+
+
+    <a href="#" class="button">Skip to Seat Selection</a>
+</div>
+
+        <div class="restaurant-title"><br>The Highway Restaurant</div>
+
+        <div class="bus-info">
+            <p>The Highway Restaurant</p>
+            <p>Address: 123 Main Street, Cityville</p>
+            <p>ETA: 30 minutes</p>
+        </div>
+
+        <div class="menu-category">
+            <div class="dish-container">
+                <img src="starter.jpg" alt="Paneer Starters" class="dish-image">
+                <div class="dish-name">Paneer Starters</div>
+                <div class="dish-info">A selection of mouth-watering Paneer starters</div>
+                <div class="order-checkbox">
+                    <input type="checkbox" name="dish" data-rate="150" onchange="calculateTotalSum()"> Order</label>
+                </div>
+            </div>
+
+            <div class="dish-container">
+                <img src="maincourse.jpg" alt="Paneer Main Course" class="dish-image">
+                <div class="dish-name">Paneer Main Course</div>
+                <div class="dish-info">Delicious Paneer main course dishes</div>
+                <div class="order-checkbox">
+                    <input type="checkbox" name="dish" data-rate="250" onchange="calculateTotalSum()"> Order</label>
+                </div>
+            </div>
+
+           
+
+        </div>
+
+        <div class="total-sum">Total: ₹<span id="totalSumDisplay">0.00</span></div>
+
+        <button class="confirm-button" onclick="confirmOrder()">Swipe to Confirm Order</button>
+
+        <div class="restroom-header">Restroom Info</div>                                
+        <div class="restroom-info">
+            <p>Location: Near the entrance</p>
+            <p>Cleanliness:3.5/5</p>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2024 RedBus
+        <img src="logo.png" alt="RedBus">
+    </footer>
+
+</body>
+</html>

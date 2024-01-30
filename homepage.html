@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedBus WebApp</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('innerbg.png') center center fixed no-repeat;
+            background-size: cover;
+            opacity: 1.0; 
+
+        }
+
+        header {
+            background-color: #D13140; 
+            text-align: center;
+            padding: 10px;
+        }
+
+        header img {
+            height: 60px;
+            width: auto;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #FFF; /* White */
+            margin: 0 15px;
+        }
+
+
+        .services {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .service-box {
+            border: 1px solid #D13140; 
+            padding: 3px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .service-box:hover {
+            background-color: #FFF; 
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .box-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .inner-box {
+            border: 2px solid #000000; 
+            padding: 5%; 
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .inner-box-bg {
+            background-image: url(background.jpg);
+            background-size: cover;
+            background-color: #FFFFFF;
+            opacity: 1.0; 
+            border-radius: 10px;
+            height: 100%; 
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            margin-bottom: 15px;
+        }
+
+        .arrow-icon {
+            font-size: 14px;
+            margin: 0 5px;
+            color: #997; 
+        }
+
+        input {
+            width: 40%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .datepicker {
+            width: 40%;
+            padding: 10px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #D13140; 
+            color: #FFF; /* White */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #D13140; 
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer img {
+            height: 30px;
+            width: auto;
+            margin-top: 5px;
+        }
+         .input-container select {
+            width: 45%; 
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+            width: 100%; 
+        }
+    </style>
+    <script>
+        $(function() {
+            $(".datepicker").datepicker();
+        });
+    </script>
+
+<script>
+  function navigateToBusSearchResults() {
+    // Get the selected values
+    var fromValue = document.getElementById('fromCity').value;
+    var toValue = document.getElementById('toCity').value;
+
+    // Construct the URL with parameters
+    var url = 'bus-results.html?from=' + encodeURIComponent(fromValue) + '&to=' + encodeURIComponent(toValue);
+
+    // Navigate to the new page
+    window.location.href = url;
+  }
+       function searchBus() {
+            var fromCity = document.getElementById('fromCity').value;
+            var toCity = document.getElementById('toCity').value;
+
+
+            // Build the URL with parameters
+            var url = 'bus-results.html?from=' + encodeURIComponent(fromCity) + '&to=' + encodeURIComponent(toCity);
+
+            // Navigate to the results page
+            window.location.href = url;
+        }
+    </script>
+
+</body>
+</html>
+</script>
+
+
+</head>
+<body>
+
+    <header>
+        <img src="logo.png">
+        <div class="services">
+            <div class="service-box">
+                <a href="#">BUS TICKETS</a>
+            </div>
+            <div class="service-box">
+                <a href="#">TRAIN TICKETS</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="box-container">
+            <div class="inner-box inner-box-bg">
+                <div class="input-container">
+                    <select id="fromCity" required>
+                        <option value="" disabled selected>FROM</option>
+                        <option value="city1">UDAIPUR</option>
+                        <option value="city2">PUNE</option>
+                        <!-- Add more cities as needed -->
+                    </select>
+                    <i class="fas fa-arrow-right arrow-icon"></i>
+                    <select id="toCity" required>
+                        <option value="" disabled selected>TO</option>
+                        <option value="city1">PUNE</option>
+                        <option value="city2">UDAIPUR</option>
+                        <!-- Add more cities as needed -->
+                    </select>
+                   <button onclick="navigateToBusSearchResults()"> Search Buses </button>
+
+                </div>
+                <input type="text" class="datepicker" placeholder="Select Date of Travel" required>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        &copy; 2024 RedBus
+        <img src="logo.png" alt="RedBus">
+    </footer>
+
+</body>
+</html>

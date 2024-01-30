@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Search Results</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('innerbg2.png') center center fixed no-repeat;
+            background-size: cover;
+            opacity: 1.0; 
+        }
+
+        header {
+            background-color: #D13140;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header img {
+            height: 60px; 
+            width: auto;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #FFF; 
+            margin: 0 15px;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+            max-height: calc(100vh - 120px); 
+            overflow-y: auto; 
+            margin-bottom: 60px; 
+        }
+
+        .result-message {
+            font-size: 24px;
+            color: #FFF; /* White */
+            margin-bottom: 20px;
+        }
+
+        .bus-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+        }
+.bus-box {
+    background-image: url(bus.jpg); 
+    background-size: cover;
+    background-position: center;
+    color: #000; /* Black text */
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    width: 70%; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-weight: 1000; /* Set font weight to 900 for maximum boldness */
+    font-size: 24px; /* Increase font size for better visibility */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for better contrast */
+    transform: translateZ(0); /* Create a slight 3D effect */
+}
+
+
+        .bus-button {
+            background-color: #D13140; 
+            color: #FFF; /* White */
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        footer {
+            background-color: #D13140; 
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer img {
+            height: 30px;
+            width: auto;
+            margin-top: 5px;
+        }
+    </style>
+<script>
+    function setValuesInPage() {
+        // Get the entire URL
+        var currentUrl = window.location.href;
+
+        // Log the entire URL to the console
+        console.log('Current URL:', currentUrl);
+
+        // Extract the query string from the URL
+        var queryString = currentUrl.split('?')[1];
+
+        // Log the query string to the console
+        console.log('Query String:', queryString);
+
+        // Create a URLSearchParams object using the query string
+        var urlParams = new URLSearchParams(queryString);
+
+        // Log all parameters to the console
+        console.log('URL Parameters:', urlParams.toString());
+
+        // Attempt to set values for BUS 1 (modify as needed)
+        var fromValue1 = urlParams.get('from');
+        var toValue1 = urlParams.get('to');
+
+        console.log('From Value (BUS 1):', fromValue1);
+        console.log('To Value (BUS 1):', toValue1);
+
+        // Attempt to set values for BUS 2 (modify as needed)
+        var fromValue2 = urlParams.get('from2'); // modify 'from2' based on your actual parameter names
+        var toValue2 = urlParams.get('to2'); // modify 'to2' based on your actual parameter names
+
+        console.log('From Value (BUS 2):', fromValue2);
+        console.log('To Value (BUS 2):', toValue2);
+
+        // Set values for BUS 1 in the HTML (modify as needed)
+        document.getElementById('fromValueDisplay1').innerText = fromValue1;
+        document.getElementById('toValueDisplay1').innerText = toValue1;
+
+        // Set values for BUS 2 in the HTML (modify as needed)
+        document.getElementById('fromValueDisplay2').innerText = fromValue2;
+        document.getElementById('toValueDisplay2').innerText = toValue2;
+    }
+
+    // Run the script when the DOM is ready
+    document.addEventListener('DOMContentLoaded', function () {
+        setValuesInPage();
+    });
+</script>
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+    <header>
+        <div>
+            <img src="logo.png" alt="RedBus">
+        </div>
+    </header>
+
+    <main>
+        <div class="result-message">2 bus(es) found for this trip</div>
+        <div class="bus-container">
+            <div class="bus-box">
+                <h2>BUS 1</h2>
+                <p>From: <span id="fromValueDisplay1"></span></p>
+                <p>To: <span id="toValueDisplay1"></span></p>
+                <a href="restroom.html?bus=1" class="bus-button">View Details</a>
+            </div>
+            <div class="bus-box">
+                <h2>BUS 2</h2>
+                <p>From: <span id="fromValueDisplay2"></span></p>
+                <p>To: <span id="toValueDisplay2"></span></p>
+                <a href="restroom.html?bus=2" class="bus-button">View Details</a>
+            </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            &copy; 2024 RedBus
+        </div>
+        <div>
+            <img src="logo.png">
+        </div>
+    </footer>
+
+</body>
+</html>
